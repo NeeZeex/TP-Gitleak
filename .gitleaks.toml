@@ -1,0 +1,22 @@
+title = "Gitleaks Config — TP"
+
+# RÈGLE CUSTOM : MON_TOKEN_[12 chars]
+[[rules]]
+id          = "internal-api-token"
+description = "Détecte les tokens internes au format MON_TOKEN_xxxxxxxxxxxx"
+regex       = '''MON_TOKEN_[A-Za-z0-9]{12}'''
+severity    = "HIGH"
+tags        = ["token", "custom", "internal"]
+
+  [rules.allowlist]
+  description = "Ignorer les fichiers de tests unitaires (faux positifs)"
+  paths       = ['''tests/.*\.py$''']
+
+# ALLOWLIST GLOBALE
+[allowlist]
+description = "Exclusions globales"
+
+regexes = [
+  '''FAKEFAKEFAKE''',
+  '''EXAMPLEKEY'''
+]
